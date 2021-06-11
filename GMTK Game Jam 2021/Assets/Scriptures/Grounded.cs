@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Grounded : MonoBehaviour
 {
-    private Move2D move;
+    public Move2D move;
 
     private void Start()
     {

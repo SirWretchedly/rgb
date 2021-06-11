@@ -7,13 +7,13 @@ public class SelectPixel : MonoBehaviour
     public bool isSelected;
 
     private Move2D move;
-    private Rigidbody2D body;
+    private Join join;
 
     void Start()
     {
         isSelected = true;
         move = transform.GetComponent<Move2D>();
-        body = transform.GetComponent<Rigidbody2D>();
+        join = transform.GetComponent<Join>();
     }
 
     public void OnMouseDown()
@@ -22,14 +22,13 @@ public class SelectPixel : MonoBehaviour
         {
             isSelected = false;
             move.enabled = false;
-            body.constraints = RigidbodyConstraints2D.FreezeAll;
+            join.enabled = false;
         }
         else
         {
             isSelected = true;
             move.enabled = true;
-            body.constraints = RigidbodyConstraints2D.None;
-            body.constraints = RigidbodyConstraints2D.FreezeRotation;
+            join.enabled = true;
         }   
     }
 }
