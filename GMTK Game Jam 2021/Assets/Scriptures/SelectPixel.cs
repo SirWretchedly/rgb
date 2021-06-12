@@ -8,27 +8,47 @@ public class SelectPixel : MonoBehaviour
 
     private Move2D move;
     private Join join;
+    private Rigidbody2D body;
 
     void Start()
     {
         isSelected = true;
         move = transform.GetComponent<Move2D>();
         join = transform.GetComponent<Join>();
+        body = transform.GetComponent<Rigidbody2D>();
     }
 
     public void OnMouseDown()
     {
         if (isSelected == true)
         {
+            foreach(SelectPixel select in transform.GetComponentsInChildren<SelectPixel>())
+                select.isSelected = false;
             isSelected = false;
-            move.enabled = false;
-            join.enabled = false;
+
+            if(move != null)
+                move.enabled = false;
+
+            if(join != null)
+                join.enabled = false;
+
+            if(body != null)
+                body.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
         }
         else
         {
+            foreach (SelectPixel select in transform.GetComponentsInChildren<SelectPixel>())
+                select.isSelected = true;
             isSelected = true;
-            move.enabled = true;
-            join.enabled = true;
+
+            if (move != null)
+                move.enabled = true;
+
+            if (join != null)
+                join.enabled = true;
+
+            if (body != null)
+                body.constraints = RigidbodyConstraints2D.FreezeRotation;
         }   
     }
 }
