@@ -8,7 +8,12 @@ public class Grounded : MonoBehaviour
 
     private void Start()
     {
-        move = this.transform.parent.GetComponent<Move2D>();
+        move = transform.parent.GetComponent<Move2D>();
+
+        while(move == null)
+        {
+            move = move.transform.parent.GetComponent<Move2D>();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

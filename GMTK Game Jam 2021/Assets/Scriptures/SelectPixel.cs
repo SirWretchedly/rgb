@@ -12,7 +12,6 @@ public class SelectPixel : MonoBehaviour
 
     void Start()
     {
-        isSelected = true;
         move = transform.GetComponent<Move2D>();
         join = transform.GetComponent<Join>();
         body = transform.GetComponent<Rigidbody2D>();
@@ -34,6 +33,8 @@ public class SelectPixel : MonoBehaviour
 
             if(body != null)
                 body.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
+
+            Animate(gameObject, "Base Layer.CloseEyes");
         }
         else
         {
@@ -49,6 +50,19 @@ public class SelectPixel : MonoBehaviour
 
             if (body != null)
                 body.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            Animate(gameObject, "Base Layer.OpenEyes");
         }   
+    }
+
+    private void Animate(GameObject parent, string animation)
+    {
+        Animator animator = parent.GetComponent<Animator>();
+
+        if(animator != null)
+            animator.Play(animation);
+
+        foreach(Transform child in parent.transform)
+            Animate(child.gameObject, animation);
     }
 }

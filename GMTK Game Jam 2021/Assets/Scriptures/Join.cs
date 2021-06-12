@@ -102,6 +102,9 @@ public class Join : MonoBehaviour
         Select(x);
         Select(y);
 
+        Animate(x, "Base Layer.OpenEyes");
+        Animate(y, "Base Layer.OpenEyes");
+
         Destroy(x.GetComponent<Move2D>());
         Destroy(y.GetComponent<Move2D>());
 
@@ -116,9 +119,11 @@ public class Join : MonoBehaviour
                                                (x.transform.position.y + y.transform.position.y) / 2);
         x.transform.parent = y.transform.parent = clone.transform;
 
+        clone.GetComponent<SelectPixel>().isSelected = true;
+
         Move2D move = clone.GetComponent<Move2D>();
-        x.GetComponentInChildren<Grounded>().move = move;
-        y.GetComponentInChildren<Grounded>().move = move;
+        foreach (Grounded grounded in clone.GetComponentsInChildren<Grounded>())
+            grounded.move = move;
     }
 
     private void Paint(GameObject canvas, Color color)
@@ -147,5 +152,16 @@ public class Join : MonoBehaviour
 
         foreach (Transform child in parent.transform)
             Select(child.gameObject);
+    }
+
+    private void Animate(GameObject parent, string animation)
+    {
+        Animator animator = parent.GetComponent<Animator>();
+
+        if (animator != null)
+            animator.Play(animation);
+
+        foreach (Transform child in parent.transform)
+            Animate(child.gameObject, animation);
     }
 }

@@ -5,7 +5,7 @@ using Unity.IO;
 
 public class Move2D : MonoBehaviour
 {
-    public float speed = 5;
+    public float speed = 4;
     public float jumpHeight = 6;
     public bool grounded = false;
 
