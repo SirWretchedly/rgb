@@ -73,7 +73,7 @@ public class Join : MonoBehaviour
         }
     }
 
-    private void UnJoin()
+    public void UnJoin()
     {
         isJoining = false;
         move.enabled = true;
@@ -81,8 +81,8 @@ public class Join : MonoBehaviour
     }
 
     private void Merge(GameObject x, GameObject y)
-    {   
-        while(y.transform.parent != null)
+    {
+        while (y.transform.parent != null)
         {         
             y = y.transform.parent.gameObject;
 
@@ -90,9 +90,10 @@ public class Join : MonoBehaviour
             {
                 SpriteRenderer spriteX = x.GetComponent<SpriteRenderer>();
                 SpriteRenderer spriteY = y.GetComponent<SpriteRenderer>();
+
                 color = new Color((spriteX.color.r + spriteY.color.r) / 2,
-                             (spriteX.color.g + spriteY.color.g) / 2,
-                             (spriteX.color.b + spriteY.color.b) / 2);
+                                  (spriteX.color.g + spriteY.color.g) / 2,
+                                  (spriteX.color.b + spriteY.color.b) / 2);
             }
         }
 
@@ -118,6 +119,8 @@ public class Join : MonoBehaviour
         clone.transform.position = new Vector2((x.transform.position.x + y.transform.position.x) / 2,
                                                (x.transform.position.y + y.transform.position.y) / 2);
         x.transform.parent = y.transform.parent = clone.transform;
+
+        GameObject.Find("TheList").GetComponent<PixelList>().pixelList.Add(clone);
 
         clone.GetComponent<SelectPixel>().isSelected = true;
 

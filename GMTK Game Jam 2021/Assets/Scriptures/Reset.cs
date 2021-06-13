@@ -6,23 +6,14 @@ using UnityEngine.SceneManagement;
 public class Reset : MonoBehaviour
 {
     public string load;
-<<<<<<< HEAD
-    
-=======
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float delay = 0.5f;
+    public GameObject staticTV;
 
-    // Update is called once per frame
->>>>>>> 5f4a60e7a35b677755cca13bd084c871408f7a16
     void Update()
     {
         if (Input.GetKeyDown("r"))
         {
             SceneManager.LoadScene(load);
-<<<<<<< HEAD
             StartCoroutine(Coroutine());
         }
     }
@@ -35,12 +26,9 @@ public class Reset : MonoBehaviour
 
     IEnumerator Coroutine()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(delay);
+        staticTV.GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(load);
     }
 }
-=======
-        }
-    }
-}
->>>>>>> 5f4a60e7a35b677755cca13bd084c871408f7a16

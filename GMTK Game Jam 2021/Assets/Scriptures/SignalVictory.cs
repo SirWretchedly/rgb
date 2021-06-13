@@ -8,6 +8,8 @@ public class SignalVictory : MonoBehaviour
     public GameObject[] edges;
     public string scene;
     public bool isVictory;
+    public GameObject staticTV;
+    public float delay = 0.5f;
 
     private bool isGood;
 
@@ -23,10 +25,37 @@ public class SignalVictory : MonoBehaviour
             if (edge.GetComponent<CheckPixel>().isGood == false)
                 isGood = false;
 
-        if (isGood == true)
+        if (isGood == true && isVictory == false)
         {
             isVictory = true;
-            SceneManager.LoadScene(scene);
+            StartCoroutine(Coroutine());
         } 
+    }
+
+    IEnumerator Coroutine()
+    {
+        foreach (GameObject pixel in GameObject.Find("TheList").GetComponent<PixelList>().pixelList)
+        {
+            if (pixel.GetComponentsInChildren<SpriteRenderer>().Length > 3)
+                continue;
+
+            SelectPixel select = pixel.GetComponent<SelectPixel>();
+            if (select.isSelected == true)
+            {
+                Animate(pixel, "Base Layer.CloseEyes");
+            }
+        }
+        yield return new WaitForSeconds(delay);
+        staticTV.GetComponent<SpriteRenderer>().enabled = true;
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(scene);
+    }
+
+    private void Animate(GameObject parent, string animation)
+    {
+        Animator animator = parent.transform.GetChild(5).GetComponent<Animator>();
+
+        if (animator != null)
+            animator.Play(animation);
     }
 }

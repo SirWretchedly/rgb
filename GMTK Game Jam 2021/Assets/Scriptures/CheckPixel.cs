@@ -32,15 +32,15 @@ public class CheckPixel : MonoBehaviour
                 colliderObject = colliderObject.transform.parent.gameObject;
             }
 
-            if (!colliderObject.GetComponent<SelectPixel>().isSelected)
-            {
+            //if (!colliderObject.GetComponent<SelectPixel>().isSelected)
+            //{
                 if (colliderObject.gameObject.GetComponent<SpriteRenderer>().color == color)
                     isGood = true;
                 else
                     isGood = false;
-            }
-            else
-                isGood = false;
+            //}
+            //else
+                //isGood = false;
         }
     }
 }
