@@ -36,36 +36,36 @@ public class Join : MonoBehaviour
         {
             if (Input.GetKeyDown("s"))
             {
-                if (bottom.colliderObject != null)
+                if (bottom.getBestCollider() != null)
                 {
-                    Merge(gameObject, bottom.colliderObject);
+                    Merge(gameObject, bottom.getBestCollider().gameObject, 1, 0);
                 }
 
                 UnJoin();
             }
             if (Input.GetKeyDown("w"))
             {
-                if (top.colliderObject != null)
+                if (top.getBestCollider() != null)
                 {
-                    Merge(gameObject, top.colliderObject);
+                    Merge(gameObject, top.getBestCollider().gameObject, -1, 0);
                 }
 
                 UnJoin();
             }
             if (Input.GetKeyDown("a"))
             {
-                if (left.colliderObject != null)
+                if (left.getBestCollider() != null)
                 {
-                    Merge(gameObject, left.colliderObject);
+                    Merge(gameObject, left.getBestCollider().gameObject, 0, 1);
                 }
 
                 UnJoin();
             }
             if (Input.GetKeyDown("d"))
             {
-                if (right.colliderObject != null)
+                if (right.getBestCollider() != null)
                 {
-                    Merge(gameObject, right.colliderObject);
+                    Merge(gameObject, right.getBestCollider().gameObject, 0, -1);
                 }
 
                 UnJoin();
@@ -80,8 +80,10 @@ public class Join : MonoBehaviour
         highlight.enabled = false;
     }
 
-    private void Merge(GameObject x, GameObject y)
+    private void Merge(GameObject x, GameObject y, int moveY, int moveX)
     {
+        x.transform.position = new Vector2(y.transform.position.x + moveX, y.transform.position.y + moveY);
+
         while (y.transform.parent != null)
         {         
             y = y.transform.parent.gameObject;

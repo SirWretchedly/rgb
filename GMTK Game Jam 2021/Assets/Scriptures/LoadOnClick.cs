@@ -7,11 +7,10 @@ public class LoadOnClick : MonoBehaviour
 {
     public string scene;
     public GameObject staticTV;
-    public float delay = 0.5f;
+    public float delay = 1f;
 
     private void OnMouseDown()
     {
-        SceneManager.LoadScene(scene);
         StartCoroutine(Coroutine());
     }
 

@@ -13,7 +13,6 @@ public class Reset : MonoBehaviour
     {
         if (Input.GetKeyDown("r"))
         {
-            SceneManager.LoadScene(load);
             StartCoroutine(Coroutine());
         }
     }

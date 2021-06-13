@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CheckPixel : MonoBehaviour
 {
@@ -32,15 +33,22 @@ public class CheckPixel : MonoBehaviour
                 colliderObject = colliderObject.transform.parent.gameObject;
             }
 
-            //if (!colliderObject.GetComponent<SelectPixel>().isSelected)
-            //{
-                if (colliderObject.gameObject.GetComponent<SpriteRenderer>().color == color)
-                    isGood = true;
-                else
-                    isGood = false;
-            //}
-            //else
-                //isGood = false;
+            if (compare(colliderObject.gameObject.GetComponent<SpriteRenderer>().color,color))
+                isGood = true;
+            else
+                isGood = false;
         }
+    }
+
+    bool compare(Color x, Color y)
+    {
+        if (Math.Abs(x.r - y.r) > 0.15)
+            return false;
+        if (Math.Abs(x.g - y.g) > 0.15)
+            return false;
+        if (Math.Abs(x.b - y.b) > 0.15)
+            return false;
+
+        return true;
     }
 }

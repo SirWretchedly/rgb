@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6756928843956931089}
   - component: {fileID: 6756928843956931090}
   - component: {fileID: 6756928843956931091}
-  - component: {fileID: 3940495406206722687}
   m_Layer: 0
   m_Name: StaticTV
   m_TagString: Untagged
@@ -119,16 +118,3 @@ VideoPlayer:
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
---- !u!114 &3940495406206722687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6756928843956931100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad802464925f3d34b8449e39ad2c5f0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  load: 
